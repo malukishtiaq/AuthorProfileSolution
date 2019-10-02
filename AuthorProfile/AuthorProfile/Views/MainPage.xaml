@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AuthorProfile.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
+    xmlns:viewmodel="clr-namespace:AuthorProfile.ViewModel"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    BackgroundColor="White"
+    NavigationPage.HasBackButton="False"
+    mc:Ignorable="d">
+    <NavigationPage.TitleView>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                Text="---"
+                TextColor="White" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.BindingContext>
+        <viewmodel:MainViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout
+        BackgroundColor="#eeeeee"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+        <Label
+            Margin="15,20,15,5"
+            FontAttributes="Bold"
+            FontSize="36"
+            Text="Top Authors"
+            TextColor="Black" />
+        <BoxView
+            BackgroundColor="Gray"
+            HeightRequest="1"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Start" />
+        <CarouselView
+            x:Name="carousel"
+            Margin="15,25,15,35"
+            CurrentItem="{Binding CurrentItem, Mode=TwoWay}"
+            HorizontalOptions="FillAndExpand"
+            HorizontalScrollBarVisibility="Never"
+            IsBounceEnabled="True"
+            IsScrollAnimated="False"
+            IsSwipeEnabled="False"
+            IsTabStop="False"
+            ItemsSource="{Binding Authors}"
+            PeekAreaInsets="20,0,10,0"
+            VerticalOptions="FillAndExpand"
+            VerticalScrollBarVisibility="Never">
+
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        WidthRequest="{Binding Source={x:Reference carousel}, Path=Width}">
+                        <yummy:PancakeView
+                            Margin="6,0,6,0"
+                            Padding="0"
+                            BackgroundColor="White"
+                            CornerRadius="20"
+                            HasShadow="False"
+                            HorizontalOptions="FillAndExpand">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4.5*" />
+                                    <RowDefinition Height="5.5*" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="7*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Margin="0"
+                                    Padding="0"
+                                    HorizontalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="7*" />
+                                    </Grid.ColumnDefinitions>
+                                    <ffimageloading:CachedImage
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Aspect="AspectFill"
+                                        HorizontalOptions="FillAndExpand"
+                                        Source="{Binding Background}"
+                                        VerticalOptions="FillAndExpand" />
+
+                                    <StackLayout Grid.Column="0">
+                                        <yummy:PancakeView
+                                            Margin="15,25,0,0"
+                                            Padding="0"
+                                            BackgroundColor="Gray"
+                                            BorderColor="White"
+                                            BorderThickness="4"
+                                            CornerRadius="57"
+                                            HeightRequest="110"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            WidthRequest="110">
+                                            <ffimageloading:CachedImage DownsampleToViewSize="true" Source="{Binding ImageSource}" />
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+                                    <StackLayout
+                                        Grid.Column="1"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="CenterAndExpand">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="24"
+                                            HorizontalOptions="FillAndExpand"
+                                            Text="{Binding Name}"
+                                            TextColor="White"
+                                            VerticalOptions="CenterAndExpand" />
+                                        <Label
+                                            FontSize="20"
+                                            HorizontalOptions="FillAndExpand"
+                                            Text="{Binding Age}"
+                                            TextColor="White"
+                                            VerticalOptions="CenterAndExpand" />
+                                        <Label
+                                            FontSize="16"
+                                            HorizontalOptions="FillAndExpand"
+                                            Text="{Binding From}"
+                                            TextColor="White"
+                                            VerticalOptions="CenterAndExpand" />
+                                    </StackLayout>
+                                </Grid>
+
+                                <StackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Margin="0"
+                                    Padding="0"
+                                    HorizontalOptions="FillAndExpand"
+                                    Orientation="Horizontal"
+                                    Spacing="0"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Grid
+                                        HorizontalOptions="FillAndExpand"
+                                        RowSpacing="0"
+                                        VerticalOptions="StartAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2.5*" />
+                                            <ColumnDefinition Width="2.5*" />
+                                            <ColumnDefinition Width="2.5*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Margin="0"
+                                            Padding="0"
+                                            HorizontalOptions="FillAndExpand"
+                                            Spacing="0"
+                                            VerticalOptions="CenterAndExpand">
+                                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="28"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{Binding TotalBooks}"
+                                                    TextColor="Black"
+                                                    VerticalOptions="Start" />
+                                                <Label
+                                                    FontSize="16"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="Books"
+                                                    TextColor="Gray"
+                                                    VerticalOptions="CenterAndExpand" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            Margin="0"
+                                            Padding="0"
+                                            HorizontalOptions="FillAndExpand"
+                                            Spacing="0"
+                                            VerticalOptions="CenterAndExpand">
+                                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="24"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{Binding Followers}"
+                                                    TextColor="Black"
+                                                    VerticalOptions="Start" />
+                                                <Label
+                                                    FontSize="16"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Text="Followers"
+                                                    TextColor="Gray"
+                                                    VerticalOptions="CenterAndExpand" />
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Grid.Row="0"
+                                            Grid.Column="3"
+                                            Margin="0"
+                                            Padding="0"
+                                            HorizontalOptions="FillAndExpand"
+                                            Spacing="0"
+                                            VerticalOptions="CenterAndExpand">
+                                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="24"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Text="{Binding Qouts}"
+                                                    TextColor="Black"
+                                                    VerticalOptions="Start" />
+                                                <Label
+                                                    FontSize="16"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Text="Qouts"
+                                                    TextColor="Gray"
+                                                    VerticalOptions="CenterAndExpand" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <yummy:PancakeView
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="5"
+                                            Margin="40,0,40,0"
+                                            HeightRequest="60"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="StartAndExpand">
+                                            <Button
+                                                BackgroundColor="#0066ff"
+                                                CornerRadius="15"
+                                                FontAttributes="Bold"
+                                                FontSize="16"
+                                                HorizontalOptions="FillAndExpand"
+                                                Text="Follow"
+                                                TextColor="White" />
+                                        </yummy:PancakeView>
+                                    </Grid>
+
+                                </StackLayout>
+                            </Grid>
+                        </yummy:PancakeView>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <yummy:PancakeView BackgroundColor="White" VerticalOptions="EndAndExpand">
+            <Grid Margin="25,30,35,10" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="200" />
+                </Grid.RowDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    FontAttributes="Bold"
+                    FontSize="28"
+                    Text="Noteable Books"
+                    TextColor="Black" />
+                <Label
+                    Grid.Row="1"
+                    FontSize="18"
+                    Text="Noteable Books"
+                    TextColor="Gray" />
+
+                <CarouselView
+                    Grid.Row="2"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalScrollBarVisibility="Never"
+                    IsBounceEnabled="True"
+                    IsScrollAnimated="True"
+                    IsTabStop="False"
+                    ItemsSource="{Binding Books, Mode=TwoWay}"
+                    NumberOfSideItems="1"
+                    PeekAreaInsets="0"
+                    VerticalOptions="EndAndExpand"
+                    VerticalScrollBarVisibility="Never">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <yummy:PancakeView
+                                CornerRadius="10"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="StartAndExpand">
+                                <ffimageloading:CachedImage Source="{Binding BookImageSource}" />
+                            </yummy:PancakeView>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </Grid>
+        </yummy:PancakeView>
+
+    </StackLayout>
+</ContentPage>
