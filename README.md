@@ -14,6 +14,8 @@ I have copied code to Automatic Image Slider In Xamarin.Forms from the Link: htt
 3. PancakeView Link: https://github.com/sthewissen/Xamarin.Forms.PancakeView
 4. DebugRainbow Link: https://github.com/sthewissen/Xamarin.Forms.DebugRainbows
 
+## Final Result
+Final app I have created can be find from the Link: https://github.com/malukishtiaq/AuthorProfileSolution/blob/master/FinalApp.gif
 ## Suggestions
 Any kind of feed is welcomed.
 
